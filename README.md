@@ -1,5 +1,8 @@
 # Cell
 
+<img width="810" height="442" alt="Screenshot 2026-06-22 at 12 02 38 AM" src="https://github.com/user-attachments/assets/cae3d6e6-473c-438e-a9fd-dc98dcfe5069" />
+
+
 Try it here: [celll.exe.xyz](https://celll.exe.xyz/)
 
 Example cells:
