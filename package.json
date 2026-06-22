@@ -1,0 +1,21 @@
+{
+  "name": "cell-sui-client-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/onboarding-client.js --bundle --format=esm --outfile=dist/onboarding.js",
+    "start": "npm run build && node server.mjs",
+    "dev": "esbuild src/onboarding-client.js --bundle --format=esm --outfile=dist/onboarding.js --watch=forever"
+  },
+  "dependencies": {
+    "@mysten-incubation/memwal": "^0.0.7",
+    "@mysten/sui": "^2.19.0",
+    "@mysten/suins": "^1.2.1",
+    "express": "^5.2.1",
+    "esbuild": "^0.28.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0"
+  }
+}

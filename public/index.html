@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cell | Grow Infinite Generative Art</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="placeholder hidden" data-view="placeholder">
+        <canvas id="cell-canvas" class="cell-canvas" aria-hidden="true"></canvas>
+        <div id="placeholder-cell-name" class="placeholder-cell-name">cell@local</div>
+        <div id="placeholder-heartbeats" class="placeholder-heartbeats" aria-live="polite">
+          <div class="heartbeat-row metric-row">
+            <span class="heart">♥</span>
+            <span class="metric-mark">✕</span>
+            <span class="heartbeat-count">50</span>
+          </div>
+        </div>
+        <div id="placeholder-age" class="placeholder-age" title="This is the age of the cell.">
+          <div class="age-row metric-row">
+            <span class="age-symbol">⧖</span>
+            <span class="metric-mark">=</span>
+            <span class="age-count">0 segs</span>
+          </div>
+          <div class="spent-row metric-row" title="Money spent growing this cell. Not a resale value.">
+            <span aria-hidden="true"></span>
+            <span class="spent-arrow">↳</span>
+            <span><span class="spent-amount">$0.00</span> spent</span>
+          </div>
+        </div>
+        <button id="grow-toggle" class="grow-toggle" type="button" aria-pressed="false">
+          Grow ▶
+        </button>
+      </section>
+
+      <dialog id="onboarding-dialog" class="onboarding-dialog">
+        <div class="onboarding-progress" aria-hidden="true">
+          <div id="onboarding-progress-fill"></div>
+        </div>
+
+        <section class="dialog-step onboarding-step-simple" data-step="register">
+          <div class="header">
+            <h1>Name your cell</h1>
+          </div>
+
+          <form id="create-form" class="form" autocomplete="off">
+            <input
+              id="name"
+              name="cell-name"
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+              minlength="3"
+              maxlength="32"
+              pattern="[a-z0-9\-]{3,32}"
+              placeholder="sunny"
+              required
+            />
+            <p id="status" class="status" role="status"></p>
+            <button id="submit" class="primary" type="submit" disabled>
+              Next
+            </button>
+            <button id="import-open" class="secondary small-action" type="button">
+              Import
+            </button>
+          </form>
+        </section>
+
+        <section class="dialog-step onboarding-step-simple hidden" data-step="import">
+          <div class="header compact">
+            <h1>Import key</h1>
+          </div>
+
+          <form id="import-form" class="form" autocomplete="off">
+            <input
+              id="import-private-key"
+              name="private-key"
+              type="password"
+              autocomplete="new-password"
+              autocapitalize="none"
+              spellcheck="false"
+              placeholder="Private key"
+              required
+            />
+            <p id="import-status" class="status" role="status"></p>
+            <button id="import-submit" class="primary" type="submit">
+              Next
+            </button>
+          </form>
+        </section>
+
+        <section class="dialog-step hidden" data-step="personality">
+          <div class="header compact">
+            <h1>Pick your personality</h1>
+          </div>
+
+          <div id="personality-grid" class="personality-grid">
+            <button class="personality-option selected" type="button" data-personality="Curious">
+              <strong>Curious</strong>
+              <span>Explores loosely, asks questions, follows surprising threads.</span>
+            </button>
+            <button class="personality-option" type="button" data-personality="Analytical">
+              <strong>Analytical</strong>
+              <span>Breaks ideas into parts and favors careful reasoning.</span>
+            </button>
+            <button class="personality-option" type="button" data-personality="Contrarian">
+              <strong>Contrarian</strong>
+              <span>Looks for weak assumptions and tests the opposite view.</span>
+            </button>
+            <button class="personality-option" type="button" data-personality="Poetic">
+              <strong>Poetic</strong>
+              <span>Turns memory into images, rhythm, and metaphor.</span>
+            </button>
+            <button class="personality-option" type="button" data-personality="Builder">
+              <strong>Builder</strong>
+              <span>Moves toward concrete artifacts, plans, and experiments.</span>
+            </button>
+            <button class="personality-option" type="button" data-personality="Archivist">
+              <strong>Archivist</strong>
+              <span>Preserves continuity and connects new thoughts to old ones.</span>
+            </button>
+          </div>
+
+          <div class="dialog-actions">
+            <button id="personality-next" class="primary" type="button">Next</button>
+          </div>
+        </section>
+
+        <section class="dialog-step hidden" data-step="heartbeats">
+          <div class="header compact">
+            <h1>Start</h1>
+          </div>
+          <div class="heartbeat-meter">
+            <span>50 ✕ ♥</span>
+            <small>heartbeats</small>
+          </div>
+          <div class="dialog-actions">
+            <button id="start-cell" class="primary" type="button">Start</button>
+          </div>
+        </section>
+      </dialog>
+
+      <section class="panel result hidden" data-view="local">
+        <p class="eyebrow">Browser state loaded</p>
+        <h1 id="local-name">Your cell</h1>
+        <p class="copy">This browser already has a local CELL state.</p>
+        <dl>
+          <div>
+            <dt>Cell id</dt>
+            <dd><code id="local-cell-id"></code></dd>
+          </div>
+          <div>
+            <dt>Owner address</dt>
+            <dd><code id="local-address"></code></dd>
+          </div>
+          <div>
+            <dt>Local cells</dt>
+            <dd><code id="local-cell-count">1</code></dd>
+          </div>
+          <div>
+            <dt>Last registration transaction</dt>
+            <dd><a id="local-digest" target="_blank" rel="noreferrer"></a></dd>
+          </div>
+        </dl>
+        <div class="actions">
+          <button id="local-new-cell" class="primary" type="button">
+            Register another
+          </button>
+        </div>
+      </section>
+
+      <section class="panel result hidden" data-view="success">
+        <p class="eyebrow">Prototype saved</p>
+        <h1 id="success-name">Name registered</h1>
+        <p class="copy">This client-side proof of concept saved the cell in this browser.</p>
+        <dl>
+          <div>
+            <dt>Owner address</dt>
+            <dd><code id="success-address"></code></dd>
+          </div>
+          <div>
+            <dt>Transaction</dt>
+            <dd><a id="success-digest" target="_blank" rel="noreferrer"></a></dd>
+          </div>
+        </dl>
+        <a class="primary link-button" href="/">Register another</a>
+      </section>
+
+      <section class="panel result hidden" data-view="fail">
+        <p class="eyebrow">Registration failed</p>
+        <h1 id="fail-title">Could not register</h1>
+        <p id="fail-message" class="copy"></p>
+        <a class="primary link-button" href="/">Try again</a>
+      </section>
+    </main>
+
+    <script type="module" src="/assets/onboarding.js"></script>
+  </body>
+</html>
