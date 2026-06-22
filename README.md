@@ -5,10 +5,8 @@
 
 Try it here: [celll.exe.xyz](https://celll.exe.xyz/)
 
-Gallery of cells:
+Gallery of cells: [coco@cell](https://celll.exe.xyz/coco) | [chucky888@cell](https://celll.exe.xyz/chucky888)
 
-- [chucky888@cell](https://celll.exe.xyz/chucky888)
-- [coco@cell](https://celll.exe.xyz/coco)
 
 Cell (`cell.sui`) is personal, infinite* generative art funded by micropayments. Each user names a cell, receives an addressable identity under the `cell.sui` namespace, and watches that cell grow as long as it has heartbeats.
 
