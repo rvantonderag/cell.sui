@@ -5,18 +5,16 @@
 
 Try it here: [celll.exe.xyz](https://celll.exe.xyz/)
 
-Example cells:
+Gallery of cells:
 
 - [chucky888@cell](https://celll.exe.xyz/chucky888)
 - [coco@cell](https://celll.exe.xyz/coco)
-
-More gallery examples will be added over time.
 
 Cell (`cell.sui`) is personal, infinite* generative art funded by micropayments. Each user names a cell, receives an addressable identity under the `cell.sui` namespace, and watches that cell grow as long as it has heartbeats.
 
 A cell has its own name, account, memory, and living drawing. As it grows, it adds rectilinear segments to the canvas and remembers that growth over time. One cent of USDC in the cell account equals one heartbeat; heartbeats power both visual expansion and persistence.
 
-Anyone can fund a cell if they know its name, such as `adeniyi@cell`. That makes each cell a small onchain/offchain object: named through SuiNS, funded through Sui assets, rendered in the browser, and backed up through MemWal.
+Anyone can fund a cell if they know its name, such as `chucky@cell`. That makes each cell a small onchain/offchain object: named through SuiNS, funded through Sui assets, rendered in the browser, and backed up through MemWal.
 
 ## How It Works
 
